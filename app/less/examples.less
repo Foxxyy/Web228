@@ -1,0 +1,130 @@
+@color-button: #3A93DB;
+@margin-l: 125px;
+@margin-new: 30px;
+
+.examples {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p {
+    margin-top: 0;
+    color: #777;
+    font-size: 14pt;
+  }
+  &-roll {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    align-items: flex-start;
+    p {
+      width: 100%;
+    }
+    h2 {
+      font-size: 16pt;
+    }
+    h3 {
+      margin-top: 0;
+      color: @color-button;
+    }
+    &-elem {
+      width: 100%;
+      margin: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      img {
+        width: 100%;
+      }
+    }
+    &-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-end;
+      //height: 100%;
+      margin-left: 3%;
+      img {
+        //width: 100%;
+      }
+      &-elem0 {
+        //height: 100%;
+        opacity: 0;
+      }
+    }
+    &-left {
+      &-elem0 {
+        opacity: 0;
+      }
+    }
+    button {
+      margin-top: 30px;
+      font-size: 14pt;
+      width: 150px;
+      height: 40px;
+    }
+  }
+}
+
+@media(max-device-width: 480px) {
+  .examples {
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    padding-bottom: 50px;
+    h1 {
+      font-size: 5rem;
+    }
+    p {
+      font-size: 3rem;
+    }
+    &-roll {
+      margin: 0;
+      padding: 0;
+      justify-content: flex-start;
+      flex-direction: column;
+      align-items: center;
+      align-items: center;
+      text-align: center;
+      p {
+        width: 100%;
+        font-size: 2.5rem;
+      }
+      h2 {
+        font-size: 4rem;
+      }
+      h3 {
+        margin-top: 0;
+        font-size: 3rem;
+        color: @color-button;
+      }
+      &-elem {
+        margin-top: 50px;
+        margin-left: 0;
+        width: 80%;
+        align-items: center;
+        img {
+          width: 80%;
+        }
+      }
+      &-right {
+        height: 0;
+        opacity: 0;
+      }
+      &-left {
+        height: 0;
+        opacity: 0;
+      }
+      button {
+        margin-top: 30px;
+        font-size: 3rem;
+        width: 60%;
+        height: 100px;
+      }
+    }
+  }
+}

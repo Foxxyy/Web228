@@ -1,0 +1,54 @@
+@color-button: #3A93DB;
+@margin-l: 125px;
+@margin-new: 30px;
+
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: Roboto;
+}
+
+button {
+  background: @color-button;
+  border: 0px;
+  border-color: @color-button;
+  color: white;
+  .rounded;
+  cursor: pointer;
+}
+
+a:visited { text-decoration: none; }
+a:active { text-decoration: none; }
+a:hover { color: @color-button; }
+a:link { text-decoration: none; }
+a { color: #444; }
+
+.rounded {
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
+    -webkit-border-bottom-left-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -moz-border-radius-bottomright: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+@media (max-device-width: 480px) {
+  body {
+    margin: 0;
+  }
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("app/fonts/RobotoCondensed-Regular.ttf");
+}

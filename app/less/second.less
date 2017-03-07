@@ -1,0 +1,144 @@
+@color-button: #3A93DB;
+@margin-l: 125px;
+@margin-new: 30px;
+
+.icon-2cloud {
+  background-image: url(../img/sprite.png);
+  background-position: 0px 0px;
+  width: 77px;
+  height: 77px;
+}
+.icon-2comp {
+  background-image: url(../img/sprite.png);
+  background-position: -77px 0px;
+  width: 77px;
+  height: 77px;
+}
+.icon-2micr {
+  background-image: url(app/img/sprite.png);
+  background-position: 0px -77px;
+  width: 77px;
+  height: 77px;
+}
+
+.second {
+  margin-top: 200px;
+  margin-bottom: 200px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  &-text {
+    margin-left: @margin-l;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    h1 {
+      margin: 0;
+      font-size: 30pt;
+    }
+    p {
+      margin-top: 30px;
+      color: gray;
+      font-size: 14pt;
+    }
+    &-benefits {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      &-elem {
+        flex-wrap: nowrap;
+        margin-top: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        //flex-wrap: wrap;
+        img {
+          width: 100px;
+          height: 100px;
+          flex-shrink: 0;
+        }
+        /*
+        Да, тут я пытался сделать спрайт, но у меня ничего не вышло
+        &-image1 {
+          background-image: url("../img/sprite.png");
+          background-position: 0px -77px;
+          width: 77px;
+          height: 77px;
+        }*/
+        &-description {
+          //margin-left: 50px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          h3 {
+            color: @color-button + #022;
+            font-size: 20pt;
+            margin: 0;
+          }
+          p {
+            font-size: 14pt;
+          }
+        }
+      }
+    }
+  }
+  &-big-image {
+    margin-left: 100px;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-device-width: 480px) {
+  .second {
+    padding-left: 40px;
+    flex-direction: column;
+    &-text {
+      width: 80%;
+      margin: 0;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      h1 {
+        margin: 0;
+        font-size: 5rem;
+      }
+      p {
+        font-size: 2rem;
+      }
+      &-benefits {
+        width: 80%;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        &-elem {
+          img {
+            width: 200px;
+            height: 200px;
+          }
+          &-description {
+            margin-left: 20px;
+            h3 {
+              color: @color-button + #022;
+              font-size: 3rem;
+              margin: 0;
+            }
+            p {
+              font-size: 3rem;
+            }
+          }
+        }
+      }
+    }
+    &-big-image {
+      margin-left: 30px;
+      flex-grow: 0;
+      flex-shrink: 1;
+    }
+  }
+}
