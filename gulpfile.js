@@ -12,8 +12,13 @@ var LessPluginCleanCSS = require('less-plugin-clean-css');
 var cleancss = new LessPluginCleanCSS({ advanced: true });
 
 gulp.task('minify', function() {
-  gulp.src('./*.html')
+  var options = {
+      compress: true
+  };
+  return gulp.src('./*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(htmlclean())
+    .pipe(inlinesource(options))
     .pipe(gulp.dest('./dist'))
 });
 
@@ -29,38 +34,24 @@ gulp.task('index', function () {
 
 gulp.task('less', function() {
     return gulp.src("app/less/*.less")
-        .pipe(less({
-          plugins: [cleancss]
-        }))
-        .pipe(concat('build.css'))
-        .pipe(csso())
-        .pipe(gulp.dest('./dist/css'));
-});
-
-gulp.task('csso', function () {
-    return gulp.src('app/css/*.css')
-        .pipe(csso())
+        .pipe(less())
+        //.pipe(concat('build.css'))
         .pipe(gulp.dest('./dist/css'));
 });
 
 gulp.task('browser-sync', function () {
   var files = [
-    '*.html',
     'app/css/*.css',
     'app/img/*.png',
-    'dist/css/*.css'
+    'dist/css/*.css',
+    'dist/*.html'
   ];
 
   browserSync.init(files, {
     server: {
-      baseDir: '.'
+      baseDir: './dist'
     }
   });
-});
-
-// Локальный сервер для разработки
-gulp.task('http-server', function() {
-  connect.server();
 });
 
 gulp.task('images', function() {
@@ -71,5 +62,7 @@ gulp.task('images', function() {
 });
 
 gulp.watch('app/less/*.less', ['less']);
+gulp.watch('*.html', ['minify']);
 gulp.watch('app/css/*.css', ['csso'])
-gulp.task('default', ['less', 'csso', 'images', 'index', 'minify', 'browser-sync', 'http-server']);
+
+gulp.task('default', ['less', 'images', 'index', 'minify', 'browser-sync']);

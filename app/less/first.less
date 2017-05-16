@@ -12,6 +12,9 @@
   justify-content: space-around;
   color: white;
   overflow: visible;
+
+  width: 100%;
+
   &-top{
     display: flex;
     flex-direction: row;
@@ -79,40 +82,39 @@
 
 @media (max-device-width: 480px) {
   .first {
+    overflow: hidden;
+    width: 100%;
     padding: 0;
     margin-right: 0;
     font-size: 5rem;
     padding-left: @margin-new;
     &-top {
+      width: 100vw;
       margin-left: 0;
       align-items: flex-start;
       justify-content: flex-start;
-      flex-direction: column;
+      flex-direction: row;
       padding: 0px;
       padding-top: 1em;
       h3 {
         margin: 0;
+        width: 30%;
         font-size: 7rem;
         margin-bottom: 50px;
       }
       &-menu {
-        flex-direction: column;
-        &-list {
-          align-items: flex-start;
-          justify-content: flex-start;
-          flex-direction: column;
-        }
-        button {
-          font-size: 5rem;
-          align-items: flex-start;
-          justify-content: flex-start;
-          padding: 0;
+        //max-height: 0;
+        display: none;
+      }
+      &-divsvg {
+        margin: 0;
+        svg {
+          width: 100%;
           margin: 0;
-          flex-grow: 1;
-          width: 150%;
-          height: 10%;
-          max-width: 100%;
-          min-width: 100%;
+          line {
+            stroke:rgb(255,134,228);
+            stroke-width:20;
+          }
         }
       }
     }
