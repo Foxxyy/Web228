@@ -9,10 +9,12 @@ var app = angular.module("exampleBlock", ["ngRoute"])
     });
 }]);
 
-app.controller('dbCtrl', function($scope, $http, $location, $window) {
-    $http.get("http://localhost:8080/api/example/").then(function (response) {
+app.controller('dbCtrl', function($scope, $http, $location, $window, fact) {
+    fact.get().then(function (response) {
         $scope.data = response.data;
     });
+    //$scope.data = fact.get.data;
+    //console.log($scope.data);
     $scope.learnmoreClick = function() {
         $location.path('learnmore');
         //$window.open('http://localhost:3000/learnmore', '_blank');
@@ -24,14 +26,43 @@ app.controller('dbCtrl', function($scope, $http, $location, $window) {
     };
 });
 
-app.directive("exBl", function() {
+app.factory("fact", function ($http) {
+  this.get = function () {
+    return $http.get('http://localhost:8080/api/example/');
+  }
+
+  this.getById = function (id) {
+    return $http.get('http://localhost:8080/api/example/' + id);
+  }
+
+  this.post = function (pic, title, author, description) {
+    return $http.post('http://localhost:8080/api/example/', {"picName" : pic, "description" : description, "author" : author, "name": title});
+  }
+
+  this.del = function (id) {
+    return $http.delete('http://localhost:8080/api/example/' + id);
+  }
+
+  this.put = function (id) {
+    return $http.put('http://localhost:8080/api/example/' + id, {"picName" : pic, "description" : description, "author" : author, "name": title});
+  }
+
+  return this;
+});
+
+app.directive("exBl", function(fact) {
     return {
-        template : '<img src="img/{{x.picName}}">' +
-        '<h2> {{ x.name }} </h2>' +
-        '<h3>{{x.author}}</h3>' +
-        '<p>{{x.description}}</p>' +
+        template : '<img src="img/{{d.picName}}">' +
+        '<h2> {{d.name}} </h2>' +
+        '<h3>{{d.author}}</h3>' +
+        '<p>{{d.description}}</p>' +
         '<button ng-click="learnmoreClick()">LEARN MORE</button>'+
-        '<a href="../../update.html" ng=click="edit({{x.id}})">edit</a>'
+        '<a href="../../update.html" ng=click="edit({{x.id}})">edit</a>',
+        link: function (scope) {
+          fact.getById(scope.x._id).then(function (response) {
+            scope.d = response.data;
+          });
+        }
     };
 });
 
