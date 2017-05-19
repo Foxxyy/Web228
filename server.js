@@ -43,8 +43,6 @@ var router = express.Router();              // get an instance of the express Ro
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
-    // do logging
-    console.log('Something is happening.');
     next(); // make sure we go to the next routes and don't stop here
 });
 
@@ -64,6 +62,7 @@ router.route('/example')
         ex.author = req.body.author
         ex.description = req.body.description
         ex.picName = req.body.picName
+        ex.full = req.body.full
 
         // save the bear and check for errors
         ex.save(function(err) {
@@ -103,15 +102,15 @@ router.route('/example')
 
                if (err)
                    res.send(err);
-
                //bear.name = req.body.name;  // update the bears info
-               ex.name = req.body.name
-               ex.author = req.body.author
-               ex.description = req.body.description
-               ex.picName = req.body.picName
+               example.name = req.body.name
+               example.author = req.body.author
+               example.description = req.body.description
+               example.picName = req.body.picName
+               example.full = req.body.full
 
                // save the bear
-               ex.save(function(err) {
+               example.save(function(err) {
                    if (err)
                        res.send(err);
 
@@ -121,7 +120,7 @@ router.route('/example')
       })
 
       .delete(function(req, res) {
-        Examle.remove({
+        Example.remove({
             _id: req.params.ex_id
         }, function(err, bear) {
             if (err)

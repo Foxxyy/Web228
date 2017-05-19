@@ -15,11 +15,22 @@ gulp.task('minify', function() {
   var options = {
       compress: true
   };
-  return gulp.src('./*.html')
+  return gulp.src('./app/index.html')
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(htmlclean())
     .pipe(inlinesource(options))
     .pipe(gulp.dest('./dist'))
+});
+
+gulp.task('minifyOther', function() {
+  var options = {
+      compress: true
+  };
+  return gulp.src('./app/html/*.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(htmlclean())
+    .pipe(inlinesource(options))
+    .pipe(gulp.dest('./dist/html'))
 });
 
 gulp.task('index', function () {
@@ -44,6 +55,7 @@ gulp.task('browser-sync', function () {
     'app/css/*.css',
     'app/img/*.png',
     'dist/css/*.css',
+    'dist/html/*.html',
     'dist/*.html'
   ];
 
@@ -62,7 +74,8 @@ gulp.task('images', function() {
 });
 
 gulp.watch('app/less/*.less', ['less']);
-gulp.watch('*.html', ['minify']);
+gulp.watch('app/*.html', ['minify']);
+gulp.watch('app/html/*.html', ['minifyOther']);
 gulp.watch('app/css/*.css', ['csso'])
 
-gulp.task('default', ['less', 'images', 'index', 'minify', 'browser-sync']);
+gulp.task('default', ['less', 'images', 'index', 'minifyOther', 'minify', 'browser-sync']);
